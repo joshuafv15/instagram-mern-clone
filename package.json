@@ -1,6 +1,9 @@
 {
   "name": "instagram-mern",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "description": "Instagram clone using Mern stack",
   "main": "server.js",
   "type": "module",

@@ -4,7 +4,7 @@ import React from "react";
 const SocketContext = React.createContext();
 
 export const SocketContextProvider = (props) => {
-  const socket = io("ws://localhost:5000");
+  const socket = io();
 
   return (
     <SocketContext.Provider value={socket}>

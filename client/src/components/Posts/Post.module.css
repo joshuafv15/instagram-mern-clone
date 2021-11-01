@@ -1,0 +1,47 @@
+.post {
+  background-color: white;
+  max-width: 500px;
+  border: 1px solid lightgray;
+  margin-bottom: 45px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.postImage {
+  width: 100%;
+  object-fit: contain;
+  border-top: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+}
+
+.postText {
+  font-weight: normal;
+  padding: 20px;
+}
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 5px;
+}
+.postHeaderUser {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.postHeaderUser:hover {
+  color: rgb(112, 110, 110);
+  text-decoration: underline;
+  transition: 30ms;
+}
+
+.postAvatar {
+  margin-right: 10px;
+}
+
+.commentsBox {
+  padding: 10px 20px;
+  border-top: 1px solid lightgray;
+}
+.commentsBox p {
+  padding-top: 5px;
+}

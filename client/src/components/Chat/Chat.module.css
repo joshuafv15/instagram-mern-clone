@@ -20,6 +20,7 @@
 .chatUsers {
   flex: 2;
   border: 1px solid lightgray;
+  overflow-y: scroll;
 }
 
 .chatBoxWrapper {
@@ -85,7 +86,7 @@
 
 @media (max-width: 800px) {
   .messenger {
-    min-width: 500px;
+    min-width: 400px;
     padding: 0;
   }
   .chatMenu {
@@ -98,10 +99,10 @@
     flex: 6;
   }
   .chatMenuWrapper {
-    min-width: 100px;
+    min-width: 50px;
   }
   .chatUsersWrapper {
-    min-width: 100px;
+    min-width: 50px;
   }
 
   .noConversation {

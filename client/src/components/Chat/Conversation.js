@@ -11,7 +11,7 @@ const Conversation = (props) => {
   );
   useEffect(() => {
     const fetchOtherUser = async (userId) => {
-      await axios.get("/users/" + userId).then((response) => {
+      await axios.get("/api/users/" + userId).then((response) => {
         setOtherUser(response.data);
       });
     };
@@ -20,7 +20,7 @@ const Conversation = (props) => {
 
   return (
     <div className={classes.conversation}>
-      <Avatar alt={otherUser?.username} src={otherUser?.picture || "./r.png"} />
+      <Avatar alt={otherUser?.username} src={otherUser?.picture} />
       <span className={classes.conversationName}>{otherUser?.username}</span>
     </div>
   );

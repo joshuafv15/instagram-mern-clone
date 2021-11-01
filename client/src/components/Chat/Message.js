@@ -10,10 +10,7 @@ const Message = (props) => {
     >
       <div className={classes.messageTop}>
         {!props.own && (
-          <Avatar
-            alt={props.user?.username}
-            src={props.user?.picture || "./1.jpg"}
-          />
+          <Avatar alt={props.user?.username} src={props.user?.picture} />
         )}
         <p className={classes.messageText}>{props.message.text}</p>
       </div>

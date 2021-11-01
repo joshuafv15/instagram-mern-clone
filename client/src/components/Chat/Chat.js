@@ -23,7 +23,7 @@ const Chat = () => {
   //Get all the conversations for this user
   useEffect(() => {
     const fetchConversations = async (userId) => {
-      await axios.get("/conversations/" + userId).then((response) => {
+      await axios.get("/api/conversations/" + userId).then((response) => {
         setConversations(response.data);
       });
     };
@@ -38,22 +38,24 @@ const Chat = () => {
   useEffect(() => {
     const fetchOtherUser = async (conversationId) => {
       const receiverId = await axios
-        .get("/conversations/getConversationId/" + conversationId)
+        .get("/api/conversations/getConversationId/" + conversationId)
         .then((response) => {
           return response.data.members.find(
             (user) => user !== authCtx.user.uid
           );
         });
-      await axios.get("/users/" + receiverId).then((response) => {
+      await axios.get("/api/users/" + receiverId).then((response) => {
         setOtherUser(response.data);
       });
     };
-    fetchOtherUser(currentChat);
+    if (currentChat) {
+      fetchOtherUser(currentChat);
+    }
   }, [currentChat, authCtx.user.uid]);
 
   useEffect(() => {
     const fetchMessages = async (conversationId) => {
-      await axios.get("/messages/" + conversationId).then((response) => {
+      await axios.get("/api/messages/" + conversationId).then((response) => {
         setMessages(response.data);
       });
     };
@@ -69,7 +71,7 @@ const Chat = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      await axios.get("/users/").then((response) => {
+      await axios.get("/api/users/").then((response) => {
         const otherUsers = response.data.filter(
           (user) => user.userId !== authCtx.user.uid
         );
@@ -87,12 +89,12 @@ const Chat = () => {
       text: newMessage,
     };
     let newMessageId = "";
-    await axios.post("/messages/", message).then((response) => {
+    await axios.post("/api/messages/", message).then((response) => {
       newMessageId = response.data._id;
       setMessages((prevState) => [...prevState, response.data]);
     });
     const receiverId = await axios
-      .get("/conversations/getConversationId/" + message.conversationId)
+      .get("/api/conversations/getConversationId/" + message.conversationId)
       .then((response) => {
         return response.data.members.find((user) => user !== message.sender);
       });
@@ -114,7 +116,7 @@ const Chat = () => {
       setCurrentChat(conversationId);
     } else {
       //post new conversation
-      const newConvo = await axios.post("/conversations/", {
+      const newConvo = await axios.post("/api/conversations/", {
         senderId: authCtx.user.uid,
         receiverId: user.userId,
       });

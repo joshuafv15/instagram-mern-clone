@@ -30,7 +30,7 @@ export const AuthContextProvider = (props) => {
 
   useEffect(() => {
     const fetchUser = async (userId) => {
-      await axios.get(`/users/${userId}`).then((response) => {
+      await axios.get(`/api/users/${userId}`).then((response) => {
         setPicture(response.data.picture);
       });
     };
@@ -54,7 +54,7 @@ export const AuthContextProvider = (props) => {
       .then((userCredential) => {
         setUser(userCredential.user);
         setUsername(username);
-        axios.post("/users/", {
+        axios.post("/api/users/", {
           userId: userCredential.user.uid,
           username: username,
         });

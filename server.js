@@ -94,16 +94,24 @@ app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/users", userRoute);
 
-if (process.env.NODE_ENV === "production") {
+/* if (process.env.NODE_ENV === "production") {
   // Exprees will serve up production assets
   app.use(express.static("client/build"));
-  const __dirname = dirname(fileURLToPath(import.meta.url));
-
+  
   // Express serve up index.html file if it doesn't recognize route
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
-}
+} */
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build")); // serve the static react app
+  app.get(/^\/(?!api).*/, (req, res) => {
+    // don't serve api routes to react app
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
+  console.log("Serving React App...");
+}
 // listen
 httpServer.listen(port, () => console.log(`listening on localhost:${port}`));

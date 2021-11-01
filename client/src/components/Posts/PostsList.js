@@ -12,14 +12,14 @@ function PostsList() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      await axios.get("/posts/sync").then((response) => {
+      await axios.get("/api/posts/sync").then((response) => {
         setPosts(response.data);
       });
     };
     fetchPosts();
     socket.on("updatePosts", (data) => {
       if (data.type === "add") {
-        setPosts((prevState) => [...prevState, data.post]);
+        setPosts((prevState) => [data.post, ...prevState]);
       } else if (data.type === "remove") {
         setPosts((prevState) =>
           prevState.filter((post) => post._id !== data.postId)
@@ -29,7 +29,7 @@ function PostsList() {
   }, [socket]);
 
   const deletePostHandler = async (postId) => {
-    await axios.delete(`/posts/deletePost/${postId}`);
+    await axios.delete(`/api/posts/deletePost/${postId}`);
     socket.emit("deletePost", postId);
   };
   return (

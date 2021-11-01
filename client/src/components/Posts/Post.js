@@ -17,7 +17,7 @@ function Post(props) {
 
   useEffect(() => {
     const fetchUser = async (userId) => {
-      await axios.get(`/users/${userId}`).then((response) => {
+      await axios.get(`/api/users/${userId}`).then((response) => {
         setUser(response.data);
       });
     };
@@ -27,7 +27,7 @@ function Post(props) {
   useEffect(() => {
     const fetchComments = async () =>
       await axios
-        .get(`/posts/syncComments/${props.postId}`)
+        .get(`/api/posts/syncComments/${props.postId}`)
         .then((response) => {
           setComments(response.data);
         });
@@ -55,7 +55,7 @@ function Post(props) {
       postId: props.postId,
     };
     const post = await axios.put(
-      `/posts/newComment/${props.postId}`,
+      `/api/posts/newComment/${props.postId}`,
       commentInfo
     );
     const comment = post.data.comments[post.data.comments.length - 1];
@@ -63,7 +63,7 @@ function Post(props) {
   };
 
   const deleteCommentHandler = async (commentId) => {
-    await axios.put(`/posts/deleteComment/${props.postId}`, {
+    await axios.put(`/api/posts/deleteComment/${props.postId}`, {
       commentId,
     });
     socket.emit("deleteComment", { postId: props.postId, commentId });
@@ -80,7 +80,7 @@ function Post(props) {
             <Avatar
               className={classes.postAvatar}
               alt={user?.username}
-              src={user?.picture || "./r.png"}
+              src={user?.picture}
             />
             <h3>{user?.username}</h3>
           </div>

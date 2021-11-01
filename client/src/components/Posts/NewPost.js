@@ -42,7 +42,7 @@ function NewPost() {
       () => {
         getDownloadURL(ref(storage, `images/${image.name}`)).then(
           async (url) => {
-            const post = await axios.post("/posts/upload", {
+            const post = await axios.post("/api/posts/upload", {
               caption: caption,
               image: url,
               user: authCtx.username,

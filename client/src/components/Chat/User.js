@@ -6,7 +6,7 @@ import classes from "./User.module.css";
 const User = (props) => {
   return (
     <div className={classes.user}>
-      <Avatar alt={props.username} src={props.picture || "./"} />
+      <Avatar alt={props.username} src={props.picture} />
       <span className={classes.username}>{props.username}</span>
     </div>
   );

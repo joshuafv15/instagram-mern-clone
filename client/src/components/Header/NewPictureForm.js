@@ -40,7 +40,7 @@ const NewPictureForm = () => {
       () => {
         getDownloadURL(ref(storage, `profilePics/${picture.name}`)).then(
           async (url) => {
-            await axios.put("/users/", {
+            await axios.put("/api/users/", {
               userId: authCtx.user.uid,
               image: url,
             });

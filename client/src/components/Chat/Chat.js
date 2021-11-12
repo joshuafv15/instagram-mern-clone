@@ -193,6 +193,7 @@ const Chat = () => {
       </div>
       <div className={classes.chatUsers}>
         <div className={classes.chatUsersWrapper}>
+          <h4 className={classes.newChatTitle}>Start New Chat</h4>
           <input
             placeholder="Search for friends..."
             className={classes.chatUsersInput}

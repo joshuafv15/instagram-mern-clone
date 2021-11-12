@@ -22,5 +22,6 @@
   .conversationName {
     font-weight: 500;
     margin-left: 0;
+    font-size: 12px;
   }
 }
